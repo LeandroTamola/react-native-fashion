@@ -4,15 +4,12 @@ import { Linking, StyleSheet } from "react-native";
 
 import { ForgotPasswordSchema } from "../components/Form/ForgotPasswordSchema";
 import { Box, Container, Footer, TextInput, Text, Button } from "../components";
-import {
-  AuthenticationRoutes,
-  StackNavigationProps,
-} from "../components/Navigation";
+import { AuthNavigationProps } from "../components/Navigation";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const ForgotPassword = ({
   navigation,
-}: StackNavigationProps<AuthenticationRoutes, "SignUp">) => {
+}: AuthNavigationProps<"ForgotPassword">) => {
   const footer = (
     <Footer
       title="Don't work?"
@@ -21,21 +18,15 @@ const ForgotPassword = ({
     />
   );
 
-  const {
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    errors,
-    setFieldValue,
-    touched,
-    values,
-  } = useFormik({
-    validationSchema: ForgotPasswordSchema,
-    initialValues: { email: "" },
-    onSubmit: () => {
-      navigation.navigate("PasswordChanged");
-    },
-  });
+  const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik(
+    {
+      validationSchema: ForgotPasswordSchema,
+      initialValues: { email: "" },
+      onSubmit: () => {
+        navigation.navigate("PasswordChanged");
+      },
+    }
+  );
   return (
     <Container pattern={2} {...{ footer }}>
       <Box padding="xl">

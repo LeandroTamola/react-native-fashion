@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { View, TextInput as RNTextInput } from "react-native";
-import { AuthenticationRoutes, HomeRoutes } from "../components/Navigation";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { AuthNavigationProps } from "../components/Navigation";
 import { useFormik } from "formik";
 
 import {
@@ -17,16 +15,8 @@ import {
 import { Box } from "../components/Theme";
 import { RectButton } from "react-native-gesture-handler";
 import { LoginSchema } from "../components/Form/LoginSchema";
-import { CompositeNavigationProp } from "@react-navigation/core";
 
-interface LoginProps {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<AuthenticationRoutes, "Login">,
-    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
-  >;
-}
-
-const Login = ({ navigation }: LoginProps) => {
+const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   const footer = (
     <Footer
       title="Don't have an account?"
@@ -46,7 +36,7 @@ const Login = ({ navigation }: LoginProps) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: () => navigation.navigate("OutfitIdeas"),
+    onSubmit: () => navigation.navigate("Home"),
   });
   return (
     <Container pattern={0} {...{ footer }}>

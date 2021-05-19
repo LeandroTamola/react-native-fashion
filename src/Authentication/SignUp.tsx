@@ -1,9 +1,6 @@
 import React, { useRef } from "react";
 import { View, TextInput as RNTextInput } from "react-native";
-import {
-  AuthenticationRoutes,
-  StackNavigationProps,
-} from "../components/Navigation";
+import { AuthNavigationProps } from "../components/Navigation";
 import { useFormik } from "formik";
 
 import { Button, Container, Text, TextInput, Footer } from "../components";
@@ -11,9 +8,7 @@ import { Button, Container, Text, TextInput, Footer } from "../components";
 import { Box } from "../components/Theme";
 import { SignUpSchema } from "../components/Form/SignUpSchema";
 
-const SignUp = ({
-  navigation,
-}: StackNavigationProps<AuthenticationRoutes, "SignUp">) => {
+const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
   const footer = (
     <Footer
       title="Already have an account?"

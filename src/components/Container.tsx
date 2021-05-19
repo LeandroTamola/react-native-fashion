@@ -62,6 +62,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
             borderTopLeftRadius="n"
             backgroundColor="white"
             flex={1}
+            justifyContent="center"
           >
             {children}
           </Box>
