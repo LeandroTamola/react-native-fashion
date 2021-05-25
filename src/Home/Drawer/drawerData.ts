@@ -10,7 +10,7 @@ export const items: DrawerItemProps[] = [
   {
     icon: "heart",
     label: "Favorites Outfits",
-    screen: "FavoritesOutfits",
+    screen: "FavoriteOutfits",
     color: "orange",
   },
   {

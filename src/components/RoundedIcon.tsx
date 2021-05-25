@@ -1,6 +1,7 @@
 import React from "react";
 import { Feather as Icon } from "@expo/vector-icons";
 import { Box, Theme, Text } from "./Theme";
+import { StyleProp, ViewStyle } from "react-native";
 
 export interface RoundedIconProps {
   name: any;
@@ -8,6 +9,7 @@ export interface RoundedIconProps {
   color: keyof Theme["colors"];
   backgroundColor: keyof Theme["colors"];
   iconRatio: number;
+  style?: StyleProp<ViewStyle>;
 }
 
 const RoundedIcon = ({
@@ -16,6 +18,7 @@ const RoundedIcon = ({
   color,
   backgroundColor,
   iconRatio,
+  style,
 }: RoundedIconProps) => {
   const iconSize = size * iconRatio;
   return (
@@ -25,7 +28,7 @@ const RoundedIcon = ({
       borderRadius="m"
       justifyContent="center"
       alignItems="center"
-      style={{ borderRadius: size / 2 }}
+      style={[{ borderRadius: size / 2 }, style]}
       {...{ backgroundColor }}
     >
       <Text style={{ width: iconSize, height: iconSize }} {...{ color }}>
