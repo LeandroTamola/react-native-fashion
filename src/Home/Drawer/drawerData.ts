@@ -16,7 +16,7 @@ export const items: DrawerItemProps[] = [
   {
     icon: "user",
     label: "Edit Profile",
-    screen: "EfitProfile",
+    screen: "EditProfile",
     color: "yellow",
   },
   {

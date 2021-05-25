@@ -4,9 +4,6 @@ import { Box, Header, Text } from "../../components";
 import DrawerItem from "./DrawerItem";
 import { items } from "./drawerData";
 import { DrawerActions } from "@react-navigation/routers";
-import { RectButton } from "react-native-gesture-handler";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
-import { HomeRoutes } from "../../components/Navigation";
 
 export const assets = [require("./assets/drawer.png")];
 export const { width } = Dimensions.get("window");

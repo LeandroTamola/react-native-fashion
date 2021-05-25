@@ -1,10 +1,7 @@
-import {
-  NavigationHelpersContext,
-  useNavigation,
-} from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/core";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import { Box, RoundedIcon, Text, useTheme, Theme } from "../../components";
 import { HomeRoutes } from "../../components/Navigation";

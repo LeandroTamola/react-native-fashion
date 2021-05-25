@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { DRAWER_WIDTH } from "../Home/Drawer";
 import { Box } from "./Theme";
 
@@ -21,5 +20,3 @@ const Avatar = ({}: AvatarProps) => {
 };
 
 export default Avatar;
-
-const styles = StyleSheet.create({});
