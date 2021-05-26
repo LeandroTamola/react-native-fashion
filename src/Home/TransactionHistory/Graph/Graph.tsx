@@ -4,24 +4,29 @@ import { Box, Theme, useTheme } from "../../../components";
 import Underlay from "./Underlay";
 import { lerp } from "./Scale";
 
-interface Point {
+export interface DataPoint {
   date: number;
   value: number;
   color: keyof Theme["colors"];
+  total?: number;
+  id?: number;
 }
 interface GraphProps {
-  data: Point[];
+  data: DataPoint[];
+  minDate: number;
+  maxDate: number;
 }
 
 const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;
-const Graph = ({ data }: GraphProps) => {
+const Graph = ({ data, minDate, maxDate }: GraphProps) => {
+  const numberOfMonths = new Date(maxDate - minDate).getMonth();
   const theme = useTheme();
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * aspectRatio;
   const width = canvasWidth - theme.spacing.l;
   const height = canvasHeight - theme.spacing.l;
-  const step = canvasWidth / data.length;
+  const step = canvasWidth / numberOfMonths;
   const values = data.map((p) => p.value);
   const dates = data.map((p) => p.value);
   const minX = Math.min(...dates);
@@ -30,15 +35,20 @@ const Graph = ({ data }: GraphProps) => {
   const maxY = Math.max(...values);
   return (
     <Box marginTop="xl" paddingBottom="l" paddingLeft="l">
-      <Underlay minY={minY} maxY={maxY} dates={dates} step={step} />
+      <Underlay
+        minY={minY}
+        maxY={maxY}
+        minX={minDate}
+        maxX={maxDate}
+        dates={dates}
+        step={step}
+      />
       <Box width={width} height={height}>
-        {data.map((point: Point, i: number) => {
-          if (point.value === 0) {
-            return null;
-          }
+        {data.map((point: DataPoint) => {
+          const i = new Date(point.date - minDate).getMonth();
           return (
             <Box
-              key={point.date}
+              key={point.id}
               position="absolute"
               left={i * step}
               bottom={0}

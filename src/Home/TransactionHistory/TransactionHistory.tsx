@@ -1,9 +1,14 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Box, Header, Text } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 import Graph from "./Graph/Graph";
+import Transaction from "./Transaction";
 import { data } from "./transactionData";
+
+const minDate = new Date("2020-09-01").getTime();
+const maxDate = new Date("2021-03-01").getTime();
 
 const TransactionHistory = ({
   navigation,
@@ -31,7 +36,14 @@ const TransactionHistory = ({
         </Box>
       </Box>
       <Box alignSelf="center">
-        <Graph {...{ data }} />
+        <Graph data={data} {...{ minDate, maxDate }} />
+        <ScrollView>
+          {data.map((transaction) => {
+            return (
+              <Transaction key={transaction.id} transaction={transaction} />
+            );
+          })}
+        </ScrollView>
       </Box>
     </Box>
   );
