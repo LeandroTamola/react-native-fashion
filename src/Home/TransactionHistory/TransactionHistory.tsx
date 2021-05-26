@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Box, Header, Text } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
-import Graph from "./Graph";
+import Graph from "./Graph/Graph";
 import { data } from "./transactionData";
 
 const TransactionHistory = ({
