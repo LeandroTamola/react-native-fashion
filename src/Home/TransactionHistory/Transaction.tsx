@@ -1,34 +1,43 @@
 import React from "react";
-import { StyleSheet, Dimensions } from "react-native";
+import moment from "moment";
 import { Box, Text } from "../../components";
 import { DataPoint } from "./Graph";
 
 interface TransactionProps {
-  transaction: DataPoint;
+  item: DataPoint;
 }
-const Transaction = ({ transaction }: TransactionProps) => {
+const Transaction = ({ item }: TransactionProps) => {
+  const transaction = item;
   return (
-    <Box marginVertical="l" paddingHorizontal="s">
-      <Box flexDirection="row" alignItems="center">
-        <Box
-          backgroundColor={transaction.color}
-          marginRight="s"
-          style={{ width: 10, height: 10, borderRadius: 5 }}
-        />
-        <Text variant="body" marginBottom="s" color="secondary">
-          #{transaction.id}
-        </Text>
+    <Box
+      marginVertical="l"
+      paddingHorizontal="s"
+      flexDirection="row"
+      justifyContent="space-between"
+      alignItems="center"
+    >
+      <Box>
+        <Box flexDirection="row" alignItems="center" marginBottom="s">
+          <Box
+            backgroundColor={transaction.color}
+            marginRight="s"
+            style={{ width: 10, height: 10, borderRadius: 5 }}
+          />
+          <Text variant="body">#{transaction.id}</Text>
+        </Box>
+        <Box flexDirection="row" justifyContent="space-between">
+          <Text color="darkGrey">
+            {`$${transaction.total} - ${moment(transaction.date)
+              .utc()
+              .format("DD MMMM, YYYY")}`}
+          </Text>
+        </Box>
       </Box>
-      <Box flexDirection="row" justifyContent="space-between">
-        <Text>
-          ${transaction.total} - {transaction.date}
-        </Text>
-        <Text variant="body">See more</Text>
-      </Box>
+      <Text color="secondary" variant="button">
+        See more
+      </Text>
     </Box>
   );
 };
 
 export default Transaction;
-
-const styles = StyleSheet.create({});

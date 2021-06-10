@@ -1,23 +1,29 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import moment from "moment";
+
 import { Box, useTheme, Text } from "../../../components";
 import { lerp } from "./Scale";
 
 interface UnderlayProps {
-  dates: number[];
   minY: number;
   maxY: number;
+  startDate: number;
+  numberOfMonths?: number;
   step: number;
-  minX: number;
-  maxX: number;
 }
 
-const formatter = Intl.DateTimeFormat("en", { month: "short" });
 const ROW_HEIGHT = 16;
 
-const Underlay = ({ dates, minY, maxY, step, minX, maxX }: UnderlayProps) => {
+const Underlay = ({
+  minY,
+  maxY,
+  startDate,
+  numberOfMonths,
+  step,
+}: UnderlayProps) => {
   const theme = useTheme();
-  const numberOfMonths = new Date(maxX - minX).getMonth();
+  const minDate = moment(startDate);
   return (
     <Box style={StyleSheet.absoluteFill}>
       <Box flex={1} justifyContent="space-between">
@@ -48,11 +54,11 @@ const Underlay = ({ dates, minY, maxY, step, minX, maxX }: UnderlayProps) => {
       >
         {new Array(numberOfMonths)
           .fill(0)
-          .map((_, i) => new Date(minX).getMonth() + i)
+          .map((_, i) => minDate.clone().add(i, "month"))
           .map((date, index) => (
             <Box width={step}>
               <Text key={index} color="darkGrey" textAlign="center">
-                {formatter.format(date)}
+                {date.format("MMM")}
               </Text>
             </Box>
           ))}
@@ -62,5 +68,3 @@ const Underlay = ({ dates, minY, maxY, step, minX, maxX }: UnderlayProps) => {
 };
 
 export default Underlay;
-
-const styles = StyleSheet.create({});

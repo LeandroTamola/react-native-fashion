@@ -15,10 +15,17 @@ export const data = [
   },
   {
     date: new Date("2020-11-01").getTime(),
-    value: 10,
-    color: "yellow",
+    value: 3,
+    color: "primary",
     total: 96,
     id: 245999,
+  },
+  {
+    date: new Date("2020-12-01").getTime(),
+    value: 13,
+    color: "yellow",
+    total: 103,
+    id: 245213,
   },
   {
     date: new Date("2021-01-01").getTime(),
@@ -28,9 +35,16 @@ export const data = [
     id: 246300,
   },
   {
-    date: new Date("2021-03-01").getTime(),
-    value: 4,
+    date: new Date("2021-02-01").getTime(),
+    value: 3,
     color: "primary",
+    total: 14,
+    id: 246894,
+  },
+  {
+    date: new Date("2021-03-01").getTime(),
+    value: 13,
+    color: "danger",
     total: 46,
     id: 2500103,
   },

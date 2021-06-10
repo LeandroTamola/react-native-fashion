@@ -15,7 +15,6 @@ interface ImageProps {
 
 function ImageHero({ picture, width, index, x }: ImageProps) {
   const theme = useTheme();
-  console.log(theme);
   const opacity = interpolateNode(x, {
     inputRange: [(index - 0.5) * width, index * width, (index + 0.6) * width],
     outputRange: [0, 1, 0],

@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet, Dimensions, View } from "react-native";
+import { Dimensions } from "react-native";
+import moment from "moment";
+
 import { Box, Theme, useTheme } from "../../../components";
 import Underlay from "./Underlay";
 import { lerp } from "./Scale";
@@ -13,14 +15,13 @@ export interface DataPoint {
 }
 interface GraphProps {
   data: DataPoint[];
-  minDate: number;
-  maxDate: number;
+  startDate: number;
+  numberOfMonths: number;
 }
 
 const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;
-const Graph = ({ data, minDate, maxDate }: GraphProps) => {
-  const numberOfMonths = new Date(maxDate - minDate).getMonth();
+const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const theme = useTheme();
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * aspectRatio;
@@ -28,9 +29,6 @@ const Graph = ({ data, minDate, maxDate }: GraphProps) => {
   const height = canvasHeight - theme.spacing.l;
   const step = canvasWidth / numberOfMonths;
   const values = data.map((p) => p.value);
-  const dates = data.map((p) => p.value);
-  const minX = Math.min(...dates);
-  const maxX = Math.max(...dates);
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
   return (
@@ -38,14 +36,15 @@ const Graph = ({ data, minDate, maxDate }: GraphProps) => {
       <Underlay
         minY={minY}
         maxY={maxY}
-        minX={minDate}
-        maxX={maxDate}
-        dates={dates}
+        startDate={startDate}
+        numberOfMonths={numberOfMonths}
         step={step}
       />
       <Box width={width} height={height}>
         {data.map((point: DataPoint) => {
-          const i = new Date(point.date - minDate).getMonth();
+          const i = Math.round(
+            moment.duration(moment(point.date).diff(startDate)).asMonths()
+          );
           return (
             <Box
               key={point.id}

@@ -1,32 +1,36 @@
 import { useNavigation } from "@react-navigation/core";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import React from "react";
-import { StyleSheet } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import { Box, RoundedIcon, Text, useTheme, Theme } from "../../components";
 import { HomeRoutes } from "../../components/Navigation";
 
-interface DrawerlistProps {
-  item: DrawerItemProps;
-}
-
-export interface DrawerItemProps {
+interface BaseDrawerItem {
   icon: string;
-  color: keyof Theme["colors"];
+  color: any;
   label: string;
+}
+interface ScreenDrawerItem extends BaseDrawerItem {
   screen: keyof HomeRoutes;
 }
+interface OnPressDrawerItem extends BaseDrawerItem {
+  onPress: (navigation: ReturnType<typeof useNavigation>) => void;
+}
+export type DrawerItemProps = ScreenDrawerItem | OnPressDrawerItem;
 
-const DrawerItem = ({
-  item: { icon, color, screen, label },
-}: DrawerlistProps) => {
+const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
+  // @ts-ignore
+  const { screen, onPress } = props;
+
   const theme = useTheme();
-  const { navigate } =
+  const navigation =
     useNavigation<DrawerNavigationProp<HomeRoutes, "OutfitIdeas">>();
   return (
     <RectButton
       style={{ borderRadius: theme.borderRadii.m }}
-      onPress={() => navigate(screen)}
+      onPress={() =>
+        screen ? navigation.navigate(screen) : onPress(navigation)
+      }
     >
       <Box flexDirection="row" alignItems="center" padding="m">
         <RoundedIcon
@@ -45,5 +49,3 @@ const DrawerItem = ({
 };
 
 export default DrawerItem;
-
-const styles = StyleSheet.create({});

@@ -1,3 +1,4 @@
+import { CommonActions } from "@react-navigation/routers";
 import { DrawerItemProps } from "./DrawerItem";
 
 export const items: DrawerItemProps[] = [
@@ -34,7 +35,13 @@ export const items: DrawerItemProps[] = [
   {
     icon: "log-out",
     label: "Log Out",
-    screen: "LogOut",
+    onPress: (navigation) =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Authentication" }],
+        })
+      ),
     color: "secondary",
   },
 ];

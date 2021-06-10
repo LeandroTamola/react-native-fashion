@@ -15,6 +15,7 @@ import {
 import { Box } from "../components/Theme";
 import { RectButton } from "react-native-gesture-handler";
 import { LoginSchema } from "../components/Form/LoginSchema";
+import { CommonActions } from "@react-navigation/routers";
 
 const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   const footer = (
@@ -36,7 +37,13 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: () => navigation.navigate("Home"),
+    onSubmit: () =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Home" }],
+        })
+      ),
   });
   return (
     <Container pattern={0} {...{ footer }}>

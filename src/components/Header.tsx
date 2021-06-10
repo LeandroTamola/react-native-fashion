@@ -24,7 +24,7 @@ const Header = ({ left, title, right, dark }: HeaderProps) => {
   return (
     <Box
       flexDirection="row"
-      style={{ marginTop: insets.top }}
+      style={{ marginTop: insets.top, marginBottom: 10 }}
       alignItems="center"
       justifyContent="space-between"
       paddingHorizontal="m"

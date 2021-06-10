@@ -4,6 +4,7 @@ import { Box, Header, Text } from "../../components";
 import DrawerItem from "./DrawerItem";
 import { items } from "./drawerData";
 import { DrawerActions } from "@react-navigation/routers";
+import { ScrollView } from "react-native-gesture-handler";
 
 export const assets = [require("./assets/drawer.png")];
 export const { width } = Dimensions.get("window");
@@ -50,7 +51,7 @@ const Drawer = ({ navigation }) => {
           borderTopLeftRadius="xl"
           borderBottomRightRadius="xl"
           justifyContent="center"
-          padding="l"
+          paddingHorizontal="l"
         >
           <Box
             position="absolute"
@@ -60,7 +61,7 @@ const Drawer = ({ navigation }) => {
             backgroundColor="primary"
             width={100}
             height={100}
-            style={{ borderRadius: 50 }}
+            style={{ borderRadius: 50, zIndex: 90 }}
             overflow="hidden"
           >
             <Image
@@ -70,18 +71,23 @@ const Drawer = ({ navigation }) => {
               height={100}
             />
           </Box>
-          <Box marginVertical="m">
-            <Text variant="title1" textAlign="center">
-              Anto Jotayan
-            </Text>
+          <ScrollView
+            contentContainerStyle={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+          >
+            <Box marginVertical="m">
+              <Text variant="title1" textAlign="center">
+                Anto Jotayan
+              </Text>
 
-            <Text variant="body" textAlign="center">
-              antojotayan@gmail.com
-            </Text>
-          </Box>
-          {items.map((item, index) => (
-            <DrawerItem key={index} {...{ item }} />
-          ))}
+              <Text variant="body" textAlign="center">
+                antojotayan@gmail.com
+              </Text>
+            </Box>
+            {items.map((item, index) => (
+              <DrawerItem key={index} {...item} />
+            ))}
+          </ScrollView>
         </Box>
       </Box>
       <Box
@@ -107,4 +113,9 @@ const Drawer = ({ navigation }) => {
 
 export default Drawer;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  scrollView: {
+    marginTop: 40,
+    paddingBottom: 40,
+  },
+});
