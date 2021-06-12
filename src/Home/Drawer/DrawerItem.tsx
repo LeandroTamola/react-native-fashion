@@ -38,9 +38,9 @@ const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
           name={icon}
           size={36}
           backgroundColor={color}
-          color={"white"}
+          color={"background"}
         />
-        <Text variant="button" color="secondary" marginLeft="s">
+        <Text variant="button" marginLeft="s">
           {label}
         </Text>
       </Box>

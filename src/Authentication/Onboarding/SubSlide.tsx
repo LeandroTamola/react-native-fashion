@@ -1,7 +1,12 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import Animated from "react-native-reanimated";
-import { Button, Text } from "../../components";
+import {
+  Box,
+  Button,
+  makeStyles,
+  Text,
+  Theme,
+  useTheme,
+} from "../../components";
 
 interface SubSlideProps {
   subtitle: string;
@@ -11,37 +16,35 @@ interface SubSlideProps {
 }
 
 const SubSlide = ({ subtitle, description, last, onPress }: SubSlideProps) => {
+  const theme = useTheme();
+  const styles = useStyles();
   return (
-    <View style={styles.container}>
-      <Text variant="title2" style={styles.subtitle}>
-        {subtitle}
-      </Text>
-      <Text variant="body" style={styles.description}>
-        {description}
-      </Text>
+    <Box
+      flex={1}
+      justifyContent="space-evenly"
+      alignItems="center"
+      style={{ padding: 44 }}
+    >
+      <Box justifyContent="center" alignItems="center">
+        <Text variant="title2">{subtitle}</Text>
+        <Text variant="body" style={styles.description}>
+          {description}
+        </Text>
+      </Box>
       <Button
         label={!last ? "Next" : "Let's get started"}
         variant={last ? "primary" : "default"}
         {...{ onPress }}
       />
-    </View>
+    </Box>
   );
 };
 
 export default SubSlide;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 44,
-  },
-  subtitle: {
-    marginBottom: 12,
-  },
+const useStyles = makeStyles((theme: Theme) => ({
   description: {
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: theme.spacing.s,
   },
-});
+}));

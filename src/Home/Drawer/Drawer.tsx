@@ -18,7 +18,7 @@ const avatar = {
 const Drawer = ({ navigation }) => {
   return (
     <Box flex={1}>
-      <Box flex={0.2} backgroundColor="white">
+      <Box flex={0.2}>
         <Box
           position="absolute"
           top={0}
@@ -47,7 +47,7 @@ const Drawer = ({ navigation }) => {
           left={0}
           right={0}
           bottom={0}
-          backgroundColor="white"
+          backgroundColor="background"
           borderTopLeftRadius="xl"
           borderBottomRightRadius="xl"
           justifyContent="center"
@@ -94,7 +94,7 @@ const Drawer = ({ navigation }) => {
         flex={0.2}
         width={DRAWER_WIDTH}
         height={height * 0.61}
-        backgroundColor="white"
+        backgroundColor="background"
         borderTopLeftRadius="xl"
         overflow="hidden"
       >

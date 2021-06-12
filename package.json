@@ -4,11 +4,11 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "iphone8": "expo start --simulator 'iPhone 8 (14.5)'",
+    "iphone8": "expo start --simulator 'iPhone 8 (14.3)'",
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --ext .ts,.tsx . --max-warnings 0",
-    "tsc": "tsc",
+    "tsc": "tsc -p ./tsconfig.json --skipLibCheck",
     "ci": "yarn lint && yarn tsc"
   },
   "dependencies": {

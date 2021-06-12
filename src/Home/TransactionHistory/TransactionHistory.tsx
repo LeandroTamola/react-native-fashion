@@ -19,7 +19,7 @@ const TransactionHistory = ({
 }: HomeNavigationProps<"FavoriteOutfits">) => {
   const styles = useStyles();
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         title="Transaction History"
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
@@ -30,7 +30,7 @@ const TransactionHistory = ({
         showsVerticalScrollIndicator={false}
       >
         <Box padding="m">
-          <Text variant="header" color="secondary" opacity={0.3}>
+          <Text variant="header" opacity={0.3}>
             TOTAL SPENT
           </Text>
           <Box
@@ -49,7 +49,7 @@ const TransactionHistory = ({
           <FlatList
             data={data}
             renderItem={Transaction}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
           />
         </Box>

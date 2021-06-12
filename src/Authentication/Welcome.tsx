@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, Dimensions } from "react-native";
-import { BorderlessButton } from "react-native-gesture-handler";
+import { BorderlessButton, ScrollView } from "react-native-gesture-handler";
 import { Button } from "../components";
 import { AuthNavigationProps } from "../components/Navigation";
-import { Box, Text, useTheme } from "../components/Theme";
+import { Box, makeStyles, Text, Theme, useTheme } from "../components/Theme";
 
 const { width } = Dimensions.get("window");
 const picture = {
@@ -14,14 +14,16 @@ const picture = {
 export const assets = [picture.src];
 const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
   const theme = useTheme();
+  const styles = useStyles();
 
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Box
         borderBottomRightRadius="xl"
-        backgroundColor="grey"
+        backgroundColor="background2"
         alignItems="center"
         justifyContent="flex-end"
+        flex={3 / 5}
       >
         <Image
           source={picture.src}
@@ -32,43 +34,39 @@ const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
           }}
         />
       </Box>
-      <Box flex={1} borderTopLeftRadius="xl">
+      <Box flex={2 / 5} borderTopLeftRadius="xl">
         <Box
-          backgroundColor="grey"
+          backgroundColor="background2"
           position="absolute"
           top={0}
           left={0}
           right={0}
           bottom={0}
         />
-        <Box
-          backgroundColor="white"
-          borderTopLeftRadius="xl"
-          justifyContent="space-evenly"
-          alignItems="center"
-          flex={1}
-          padding="xl"
-        >
-          <Text variant={"title2"}>Let's get started</Text>
-          <Text variant={"body"} textAlign="center">
-            Login to your account below or signup for an amazing experience
-          </Text>
-          <Button
-            variant="primary"
-            label="Have an account? Login"
-            onPress={() => navigation.navigate("Login")}
-          ></Button>
-          <Button
-            label="Join us, it's Free"
-            onPress={() => navigation.navigate("SignUp")}
-          ></Button>
-          <BorderlessButton
-            onPress={() => navigation.navigate("ForgotPassword")}
-          >
-            <Text variant="button" color="text">
-              Forgot password?
+
+        <Box backgroundColor="background" flex={2}>
+          <ScrollView contentContainerStyle={styles.scrollView}>
+            <Text variant={"title2"}>Let's get started</Text>
+            <Text variant={"body"} textAlign="center">
+              Login to your account below or signup for an amazing experience
             </Text>
-          </BorderlessButton>
+            <Button
+              variant="primary"
+              label="Have an account? Login"
+              onPress={() => navigation.navigate("Login")}
+            ></Button>
+            <Button
+              label="Join us, it's Free"
+              onPress={() => navigation.navigate("SignUp")}
+            ></Button>
+            <BorderlessButton
+              onPress={() => navigation.navigate("ForgotPassword")}
+            >
+              <Text variant="button" color="text">
+                Forgot password?
+              </Text>
+            </BorderlessButton>
+          </ScrollView>
         </Box>
       </Box>
     </Box>
@@ -76,3 +74,14 @@ const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
 };
 
 export default Welcome;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  scrollView: {
+    flex: 1,
+    borderTopLeftRadius: theme.spacing.xl,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    paddingHorizontal: theme.spacing.xl,
+    paddingVertial: theme.spacing.s,
+  },
+}));

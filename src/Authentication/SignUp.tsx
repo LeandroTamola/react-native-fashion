@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, TextInput as RNTextInput } from "react-native";
+import { View, TextInput as RNTextInput, ScrollView } from "react-native";
 import { AuthNavigationProps } from "../components/Navigation";
 import { useFormik } from "formik";
 
@@ -31,19 +31,31 @@ const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
   );
   return (
     <Container pattern={1} {...{ footer }}>
-      <Box padding="xl">
-        <Text variant="title" textAlign="center" marginVertical="m">
-          Create account
-        </Text>
-        <Text
-          variant="body"
-          textAlign="center"
-          paddingHorizontal="xl"
-          marginBottom="xl"
-        >
-          Let's us know what your name, email, and your password
-        </Text>
-
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "center",
+        }}
+      >
+        <Box marginBottom="s">
+          <Text
+            variant="title"
+            textAlign="center"
+            marginTop="m"
+            marginBottom="s"
+          >
+            Create account
+          </Text>
+          <Text
+            variant="body"
+            textAlign="center"
+            paddingHorizontal="xl"
+            marginBottom="m"
+          >
+            Let's us know what your name, email, and your password
+          </Text>
+        </Box>
         <Box>
           <Box marginBottom="m">
             <TextInput
@@ -99,7 +111,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
             />
           </Box>
         </Box>
-      </Box>
+      </ScrollView>
       <View />
     </Container>
   );

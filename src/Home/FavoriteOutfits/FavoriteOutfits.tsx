@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
 import { Box, Header } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
-import { theme, useTheme } from "../../components/Theme";
+import { useTheme } from "../../components/Theme";
 import { outfitsData } from "./outfitsData";
 import Outfit from "./Outfit";
 import Footer from "./Footer";
@@ -35,7 +35,11 @@ const FavoriteOutfits = ({
   };
 
   return (
-    <Box flex={1} style={{ paddingBottom: height / 8 }} backgroundColor="white">
+    <Box
+      flex={1}
+      style={{ paddingBottom: height / 8 }}
+      backgroundColor="background"
+    >
       <Header
         title="Favorite Outfits"
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
@@ -44,7 +48,10 @@ const FavoriteOutfits = ({
       <Box flex={1} marginTop="s" backgroundColor="secondary">
         <ScrollView
           contentContainerStyle={{ paddingHorizontal: theme.spacing.m }}
-          style={styles.scrollContainer}
+          style={{
+            backgroundColor: theme.colors.background,
+            borderBottomRightRadius: theme.borderRadii.xl,
+          }}
         >
           <Transitioning.View ref={list} transition={transition}>
             <Box flexDirection="row">
@@ -72,10 +79,3 @@ const FavoriteOutfits = ({
 };
 
 export default FavoriteOutfits;
-
-const styles = StyleSheet.create({
-  scrollContainer: {
-    backgroundColor: "white",
-    borderBottomRightRadius: theme.borderRadii.xl,
-  },
-});

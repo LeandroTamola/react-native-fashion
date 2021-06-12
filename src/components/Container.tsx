@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Box } from "./Theme";
 import Constants from "expo-constants";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface ContainerProps {
   children: ReactNode;
@@ -32,7 +33,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
         }
         backgroundColor="secondary"
       >
-        <Box backgroundColor="white">
+        <Box backgroundColor="background">
           <Box
             borderBottomLeftRadius="xl"
             overflow="hidden"
@@ -54,9 +55,10 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
           <Box
             borderRadius="xl"
             borderTopLeftRadius="n"
-            backgroundColor="white"
+            backgroundColor="background"
             flex={1}
             justifyContent="center"
+            paddingHorizontal="xl"
           >
             {children}
           </Box>

@@ -8,7 +8,7 @@ interface SocialIconProps {
 const SocialIcon = ({ children }: SocialIconProps) => {
   return (
     <Box
-      backgroundColor="white"
+      backgroundColor="background"
       width={44}
       height={44}
       margin="s"

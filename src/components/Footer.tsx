@@ -15,19 +15,19 @@ interface FooterProps {
 
 const Footer = ({ onPress, title, action }: FooterProps) => {
   return (
-    <>
+    <Box paddingBottom="s">
       <SocialLogin />
       <Box alignItems="center">
         <BorderlessButton {...{ onPress }}>
           <Text>
-            <Text color="white" variant="button">
+            <Text variant="button">
               <Text>{`${title} `}</Text>
               <Text color="primary">{action}</Text>
             </Text>
           </Text>
         </BorderlessButton>
       </Box>
-    </>
+    </Box>
   );
 };
 

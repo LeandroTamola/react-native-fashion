@@ -2,7 +2,7 @@ export const data = [
   {
     date: new Date("2020-09-01").getTime(),
     value: 10,
-    color: "yellow",
+    color: "warning",
     total: 85,
     id: 245673,
   },
@@ -23,7 +23,7 @@ export const data = [
   {
     date: new Date("2020-12-01").getTime(),
     value: 13,
-    color: "yellow",
+    color: "warning",
     total: 103,
     id: 245213,
   },

@@ -26,16 +26,14 @@ const Transaction = ({ item }: TransactionProps) => {
           <Text variant="body">#{transaction.id}</Text>
         </Box>
         <Box flexDirection="row" justifyContent="space-between">
-          <Text color="darkGrey">
+          <Text color="info">
             {`$${transaction.total} - ${moment(transaction.date)
               .utc()
               .format("DD MMMM, YYYY")}`}
           </Text>
         </Box>
       </Box>
-      <Text color="secondary" variant="button">
-        See more
-      </Text>
+      <Text variant="button">See more</Text>
     </Box>
   );
 };

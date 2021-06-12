@@ -20,7 +20,7 @@ const PasswordChanged = ({
           name="x"
           color="secondary"
           size={SIZE * 1.2}
-          backgroundColor="white"
+          backgroundColor="background"
           onPress={() => navigation.navigate("Welcome")}
         />
       }

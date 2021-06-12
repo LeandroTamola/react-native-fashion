@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
 import { Box, Text } from "../Theme";
 import { Feather as Icon } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
@@ -24,9 +23,9 @@ const CheckBox = ({ label, checked, onChange }: CheckBoxProps) => {
           width={20}
           borderWidth={1}
           borderColor="primary"
-          backgroundColor={checked ? "primary" : "white"}
+          backgroundColor={checked ? "primary" : "background"}
         >
-          <Icon name="check" color="white" />
+          <Icon name="check" color="background" />
         </Box>
         <Text variant="button">{label}</Text>
       </Box>
@@ -35,5 +34,3 @@ const CheckBox = ({ label, checked, onChange }: CheckBoxProps) => {
 };
 
 export default CheckBox;
-
-const styles = StyleSheet.create({});

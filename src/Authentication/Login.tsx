@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, TextInput as RNTextInput } from "react-native";
+import { ScrollView, TextInput as RNTextInput } from "react-native";
 import { AuthNavigationProps } from "../components/Navigation";
 import { useFormik } from "formik";
 
@@ -47,18 +47,22 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   });
   return (
     <Container pattern={0} {...{ footer }}>
-      <Box padding="xl">
-        <Text variant="title" textAlign="center" marginVertical="m">
-          Welcome Back
-        </Text>
-        <Text
-          variant="body"
-          textAlign="center"
-          paddingHorizontal="xl"
-          marginBottom="xl"
-        >
-          Use your credentials below and login to your account
-        </Text>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+      >
+        <Box>
+          <Text variant="title" textAlign="center" marginVertical="m">
+            Welcome Back
+          </Text>
+          <Text
+            variant="body"
+            textAlign="center"
+            paddingHorizontal="xl"
+            marginBottom="xl"
+          >
+            Use your credentials below and login to your account
+          </Text>
+        </Box>
 
         <Box>
           <Box marginBottom="m">
@@ -117,8 +121,7 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
             />
           </Box>
         </Box>
-      </Box>
-      <View />
+      </ScrollView>
     </Container>
   );
 };

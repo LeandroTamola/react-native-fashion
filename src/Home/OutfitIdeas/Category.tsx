@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
-import { Box, Text } from "../../components";
-import { theme } from "../../components/Theme";
+import { Box, Text, useTheme } from "../../components";
 
 interface CategoryProps {
   title: string;
@@ -13,6 +12,7 @@ const INNER_RADIUS = 30;
 const OUTER_RADIUS = 34;
 
 const Category = ({ title, color }: CategoryProps) => {
+  const theme = useTheme();
   const [selected, setSelected] = useState<boolean>(false);
   return (
     <BorderlessButton onPress={() => setSelected((prev) => !prev)}>
@@ -28,7 +28,7 @@ const Category = ({ title, color }: CategoryProps) => {
               style={{
                 ...StyleSheet.absoluteFillObject,
                 borderRadius: OUTER_RADIUS,
-                borderColor: theme.colors.backgroundColor,
+                borderColor: theme.colors.primary,
                 borderWidth: 1,
               }}
             />
